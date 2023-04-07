@@ -19,7 +19,7 @@
                 "nvtop",
                 "openssl",
                 "pipewire-codec-aptx",
-                "pypy",
+                "pypy3",
                 "rclone",
                 "smartmontools",
                 "steam-devices",
