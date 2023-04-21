@@ -2,7 +2,7 @@
     "all": {
         "include": {
             "all": [
-                "atool"
+                "atool",
                 "btrfs-assistant",
                 "compsize",
                 "corectrl",
