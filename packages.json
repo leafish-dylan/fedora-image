@@ -2,6 +2,8 @@
     "all": {
         "include": {
             "all": [
+                "btrfs-assistant",
+                "compsize",
                 "corectrl",
                 "distrobox",
                 "ffmpeg",
