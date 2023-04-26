@@ -26,6 +26,7 @@
                 "pipewire-codec-aptx",
                 "pypy3",
                 "rclone",
+                "snapper",
                 "smartmontools",
                 "steam-devices",
                 "vim",
