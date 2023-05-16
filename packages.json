@@ -11,6 +11,7 @@
                 "ffmpeg-libs",
                 "fish",
                 "fzf",
+                "hplip-gui",
                 "htop",
                 "just",
                 "libratbag-ratbagd",
