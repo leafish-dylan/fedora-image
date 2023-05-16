@@ -12,6 +12,8 @@
                 "fish",
                 "fzf",
                 "htop",
+                "hplip",
+                "hplip-gui",
                 "just",
                 "libratbag-ratbagd",
                 "libva-intel-driver",
