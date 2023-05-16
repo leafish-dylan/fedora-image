@@ -31,7 +31,7 @@ You should be familiar with [immutable desktops](https://silverblue.fedoraprojec
 
 These images are immutable, you can't, and really shouldn't, install packages like in a mutable "normal" distribution.
 Applications should be installed using Flatpak whenever possible (execpt for IDEs in some cases, more below).
-Should that not be possible, you can use [distrobox](https://github.com/89luca89/distrobox) to have images of mutable distributions where you can install applications normally.
+Should that not be possible, you can use [distrobox](https://github.com/89luca89/distrobox) to have images of mutable distributions where you can install applications normally
 Want an application that is only available on Arch Linux *and* one that is only on Ubuntu? Well, now can have both!
 
 Distrobox is very powerful, for example you can use to [host your entire development environment](https://github.com/89luca89/distrobox/blob/main/docs/posts/integrate_vscode_distrobox.md) completely separate from your host system. Or use it to run a [container for your virtual machines](https://github.com/89luca89/distrobox/blob/main/docs/posts/run_libvirt_in_distrobox.md).
