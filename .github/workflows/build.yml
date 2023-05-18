@@ -1,19 +1,10 @@
 name: build-ublue
 on:
   pull_request:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
-      - '**.txt'
+  merge_group:    
   schedule:
-    - cron: '20 20 * * *'  # 8:20pm everyday
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
-      - '**.txt'
+    - cron: '0 7 * * *'  # 7 am everyday
+  workflow_dispatch:
 env:
     IMAGE_BASE_NAME: kdme
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
@@ -33,11 +24,11 @@ jobs:
         major_version: [37, 38]
         include:
           - major_version: 37
-            is_latest_version: true
+            is_latest_version: false
             is_stable_version: true
           - major_version: 38
             is_latest_version: true
-            is_stable_version: false
+            is_stable_version: true
         exclude:
           # There is no Fedora 37 version of sericea
           # When F38 is added, sericea will automatically be built too
@@ -67,7 +58,7 @@ jobs:
           COMMIT_TAGS=()
           BUILD_TAGS=()
           # Have tags for tracking builds during pull request
-          SHA_SHORT="$(git rev-parse --short HEAD)"
+          SHA_SHORT="${GITHUB_SHA::7}"
           COMMIT_TAGS+=("pr-${{ github.event.number }}-${MAJOR_VERSION}")
           COMMIT_TAGS+=("${SHA_SHORT}-${MAJOR_VERSION}")
           if [[ "${{ matrix.is_latest_version }}" == "true" ]] && \
@@ -101,8 +92,7 @@ jobs:
       - name: Get current version
         id: labels
         run: |
-          docker pull quay.io/fedora-ostree-desktops/${{ env.SOURCE_IMAGE }}:${{ matrix.major_version }}
-          ver=$(docker inspect quay.io/fedora-ostree-desktops/${{ env.SOURCE_IMAGE }}:${{ matrix.major_version }} | jq -r '.[].Config.Labels["org.opencontainers.image.version"]')
+          ver=$(skopeo inspect docker://quay.io/fedora-ostree-desktops/${{ env.SOURCE_IMAGE }}:${{ matrix.major_version }} | jq -r '.Labels["org.opencontainers.image.version"]')
           echo "VERSION=$ver" >> $GITHUB_OUTPUT
 
       # Build metadata
@@ -170,15 +160,13 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Sign container
-      - uses: sigstore/cosign-installer@v3.0.1
+      - uses: sigstore/cosign-installer@v3.0.3
         if: github.event_name != 'pull_request'
 
       - name: Sign container image
         if: github.event_name != 'pull_request'
         run: |
-          echo "${{ env.COSIGN_PRIVATE_KEY }}" > cosign.key
-          wc -c cosign.key
-          cosign sign -y --key cosign.key ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
+          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
         env:
           TAGS: ${{ steps.push.outputs.digest }}
           COSIGN_EXPERIMENTAL: false

@@ -6,13 +6,18 @@
                 "btrfs-assistant",
                 "compsize",
                 "corectrl",
+                "apr",
+                "apr-util",
                 "distrobox",
                 "ffmpeg",
                 "ffmpeg-libs",
                 "fish",
                 "fzf",
                 "htop",
+                "intel-media-driver",
                 "just",
+                "kernel-devel-matched",
+                "kernel-tools",
                 "libratbag-ratbagd",
                 "libva-intel-driver",
                 "libva-utils",
@@ -21,17 +26,21 @@
                 "ncdu",
                 "nvme-cli",
                 "nvtop",
+                "openrgb-udev-rules",
                 "openssl",
+                "podman-compose",
                 "pipewire-codec-aptx",
                 "pypy3",
                 "rclone",
                 "snapper",
                 "smartmontools",
                 "steam-devices",
+                "tmux",
                 "vim",
                 "zstd"
             ],
             "silverblue": [
+                "adw-gtk3-theme",
                 "ffmpegthumbnailer",
                 "gnome-tweaks"
             ],
@@ -168,6 +177,9 @@
             ],
             "sericea": [
                 "tumbler"
+            ],
+            "vauxite": [
+                "xfce4-clipman-plugin"
             ]
         },
         "exclude": {
