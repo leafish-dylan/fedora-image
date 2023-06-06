@@ -18,6 +18,7 @@
                 "just",
                 "kernel-devel-matched",
                 "kernel-tools",
+                "kio-extras",
                 "libratbag-ratbagd",
                 "libva-intel-driver",
                 "libva-utils",
