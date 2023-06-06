@@ -19,6 +19,7 @@
                 "kernel-devel-matched",
                 "kernel-tools",
                 "kio-extras",
+                "kio-fuse",
                 "libratbag-ratbagd",
                 "libva-intel-driver",
                 "libva-utils",
