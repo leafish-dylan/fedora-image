@@ -9,6 +9,7 @@
                 "apr",
                 "apr-util",
                 "distrobox",
+                "dragon",
                 "ffmpeg",
                 "ffmpeg-libs",
                 "fish",
